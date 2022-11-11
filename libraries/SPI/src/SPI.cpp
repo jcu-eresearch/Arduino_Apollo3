@@ -86,6 +86,7 @@ void arduino::MbedSPI::begin() {
 void arduino::MbedSPI::end() {
     if (dev) {
         delete dev;
+        dev = NULL;
     }
 }
 

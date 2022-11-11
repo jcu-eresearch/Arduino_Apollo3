@@ -19,6 +19,15 @@ typedef void (*voidFuncPtrParamInt)(int);
 
 namespace arduino {
 
+class WireShim: public mbed::I2C
+{
+    public:
+    using mbed::I2C::I2C;
+    virtual ~WireShim(){
+        i2c_free(&_i2c);
+    };
+};
+
 class MbedI2C : public HardwareI2C
 {
   public:
@@ -52,7 +61,7 @@ private:
 #ifdef DEVICE_I2CSLAVE
     mbed::I2CSlave* slave;
 #endif
-    mbed::I2C*      master;
+    WireShim*      master;
     int _sda;
     int _scl;
     int _address;
