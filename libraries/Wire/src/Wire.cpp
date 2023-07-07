@@ -5,7 +5,7 @@
 
 #include "Wire.h"
 
-arduino::MbedI2C::MbedI2C(int sda, int scl) : _sda(sda), _scl(scl), usedTxBuffer(0), master(NULL) {
+arduino::MbedI2C::MbedI2C(int sda, int scl) : master(NULL), _sda(sda), _scl(scl), usedTxBuffer(0) {
 	#ifdef DEVICE_I2CSLAVE
     slave = NULL;
 	#endif
